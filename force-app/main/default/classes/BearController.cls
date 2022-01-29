@@ -1,7 +1,7 @@
 public with sharing class BearController {
     @AuraEnabled(Cacheable=true)
     public static Bear__c[] getAllBears() {
-        return [
+        return [ 
             SELECT
                 Id,
                 Name,
@@ -14,16 +14,16 @@ public with sharing class BearController {
                 Supervisor__r.Name
             FROM Bear__c
             WITH SECURITY_ENFORCED
-            ORDER BY Name
+            ORDER BY Name  
             LIMIT 50
         ];
-    }
+    }  
 
     @AuraEnabled(Cacheable=true)
     public static Bear__c[] searchBears(String searchTerm) {
         // Return all bears when no search term
         searchTerm = searchTerm.trim();
-        if (searchTerm == '') {
+        if (searchTerm == '') { 
             return getAllBears();
         }
         // Prepare query paramters
